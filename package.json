@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "three": "^0.162.0",
+    "typeface-roboto": "^1.1.13"
+  },
+  "devDependencies": {
+    "vite": "^5.1.6"
+  },
+  "scripts": {
+    "start": "python3 coordinates-script.py && npx vite"
+  }
+}

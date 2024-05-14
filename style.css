@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    overflow: hidden;
+}
+
+.canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    outline: none;
+}
+
+.speed-button {
+    position: absolute;
+    bottom: 20px;
+    left: 55%;
+    transform: translateX(-50%);
+    z-index: 999; /* Ensure the button is above other elements */
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.speed-button.active {
+    background-color: #28a745; /* Change button color when active */
+}
+
+.slow-button {
+    position: absolute;
+    bottom: 20px;
+    left: 45%;
+    transform: translateX(-50%);
+    z-index: 999; /* Ensure the button is above other elements */
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.slow-button.active {
+    background-color: #28a745; /* Change button color when active */
+}
+
+.speed-label {
+    font-family: 'Courier new', sans-serif;
+    position: absolute;
+    bottom: 80px; /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    font-size: 36px;
+    color: #333;
+}
