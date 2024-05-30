@@ -15,6 +15,10 @@ ___
 The project is written in JavaScript, utilizing the following technologies:
 
 * HTML, CSS
+<<<<<<< HEAD
 * Three.js javascript library
+=======
+* Three.js - Javascript 3D library
+>>>>>>> edde8a8892b2bf8f703d61dfe64d85231eb2d5ab
 * NoSQL Redis database
 * Nasa API
