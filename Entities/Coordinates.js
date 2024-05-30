@@ -18,12 +18,22 @@ export class Coordinates {
     }
 
     async read_json(filename) {
-        const response = await fetch(filename);
-        const data = await response.json();
-        const planets = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune'];
-        planets.forEach(element => {
-            this.coordinates_json.push(data[element].Ra);
-        });
-        return this.coordinates_json;
+        try {
+            const response = await fetch(filename);
+            const data = await response.json();
+            const planets = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune'];
+            this.coordinates_json = [];  // Ensure coordinates_json is initialized properly
+            planets.forEach(element => {
+                if (data[element] && data[element].Deg !== undefined) {
+                    this.coordinates_json.push(data[element].Deg);
+                } else {
+                    console.warn(`Data for ${element} is missing or incomplete.`);
+                }
+            });
+            return this.coordinates_json;
+        } catch (error) {
+            console.error(`Error fetching coordinates: ${error}`);
+            return [];
+        }
     }
 }

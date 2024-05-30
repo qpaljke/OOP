@@ -20,19 +20,19 @@ body {
     bottom: 20px;
     left: 55%;
     transform: translateX(-50%);
-    z-index: 999; /* Ensure the button is above other elements */
+    z-index: 999; 
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
+    background-color: transparent;
+    color: #bbbbbb;
+    border-color: #bbbbbb;
+    border-radius: 15px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .speed-button.active {
-    background-color: #28a745; /* Change button color when active */
+    background-color: #212121;
 }
 
 .slow-button {
@@ -40,28 +40,28 @@ body {
     bottom: 20px;
     left: 45%;
     transform: translateX(-50%);
-    z-index: 999; /* Ensure the button is above other elements */
+    z-index: 999; 
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
+    background-color: transparent;
+    color: #bbbbbb;
+    border-color: #bbbbbb;
+    border-radius: 15px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .slow-button.active {
-    background-color: #28a745; /* Change button color when active */
+    background-color: #212121;
 }
 
 .speed-label {
     font-family: 'Courier new', sans-serif;
     position: absolute;
-    bottom: 80px; /* Adjust as needed */
+    bottom: 80px; 
     left: 50%;
     transform: translateX(-50%);
     z-index: 999;
     font-size: 36px;
-    color: #333;
+    color: #b2b2b2;
 }
