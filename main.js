@@ -39,7 +39,7 @@ async function info_read_json(filename) {
       const response = await fetch(filename);
       const data = await response.json();
       const planets = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune'];
-      const planets_info_json = {};  // Используем объект для хранения данных о планетах
+      const planets_info_json = {}; 
 
       planets.forEach(element => {
           if (data[element] !== undefined) {
@@ -179,96 +179,32 @@ const decreaseSpeedButton = document.getElementById('decreaseSpeedButton');
 const speedLabel = document.getElementById('speedLabel');
 let speedMultiplier = 1;
 
+const speedValues = [
+  1, 3, 10, 30, 60, 300, 600, 1800, 3600, 
+  3 * 3600, 10 * 3600, 24 * 3600, 5 * 24 * 3600, 
+  7 * 24 * 3600, 3 * 7 * 24 * 3600, 30 * 24 * 3600, 
+  3 * 30 * 24 * 3600, 6 * 30 * 24 * 3600, 
+  12 * 30 * 24 * 3600, 3 * 12 * 30 * 24 * 3600
+];
+
 increaseSpeedButton.addEventListener('click', () => {
-  if (speedMultiplier == 1)
-    speedMultiplier = 3;
-  else if (speedMultiplier == 3)
-    speedMultiplier = 10;
-  else if(speedMultiplier == 10)
-    speedMultiplier = 30;
-  else if(speedMultiplier == 30)
-    speedMultiplier = 60;
-  else if (speedMultiplier == 60)
-    speedMultiplier = 300;
-  else if (speedMultiplier == 300)
-    speedMultiplier = 600;
-  else if (speedMultiplier == 600)
-    speedMultiplier = 1800;
-  else if (speedMultiplier == 1800)
-    speedMultiplier = 3600;
-  else if(speedMultiplier == 3600)
-    speedMultiplier = 3 * 3600;
-  else if(speedMultiplier == 3 * 3600)
-    speedMultiplier = 10 * 3600;
-  else if(speedMultiplier == 10 * 3600)
-    speedMultiplier = 24 * 3600;
-  else if (speedMultiplier == 24 * 3600)
-    speedMultiplier = 5 * 24 * 3600;
-  else if (speedMultiplier == 5 * 24 * 3600)
-    speedMultiplier = 7 * 24 * 3600;
-  else if (speedMultiplier == 7 * 24 * 3600)
-    speedMultiplier = 3 * 7 * 24 * 3600;
-  else if (speedMultiplier == 3 * 7 * 24 * 3600)
-    speedMultiplier = 30 * 24 * 3600;
-  else if (speedMultiplier == 30 * 24 * 3600)
-    speedMultiplier = 3 * 30 * 24 * 3600;
-  else if (speedMultiplier == 3 * 30 * 24 * 3600)
-    speedMultiplier = 6 * 30 * 24 * 3600;
-  else if (speedMultiplier == 6 * 30 * 24 * 3600)
-    speedMultiplier = 12 * 30 * 24 * 3600;
-  else if (speedMultiplier == 12 * 30 * 24 * 3600)
-    speedMultiplier = 3 * 12 * 30 * 24 * 3600;
-
-
-
-    //speedMultiplier *= 2; 
-    updateButtonAppearance(increaseSpeedButton);
-    updateSpeedLabel();
+  let currentIndex = speedValues.indexOf(speedMultiplier);
+  if (currentIndex !== -1 && currentIndex < speedValues.length - 1) {
+    speedMultiplier = speedValues[currentIndex + 1];
+  }
+  updateButtonAppearance(increaseSpeedButton);
+  updateSpeedLabel();
 });
 
 decreaseSpeedButton.addEventListener('click', () => {
-if (speedMultiplier == 3)
-  speedMultiplier = 1;
-else if(speedMultiplier == 10)
-  speedMultiplier = 3;
-else if(speedMultiplier == 30)
-  speedMultiplier = 10;
-else if (speedMultiplier == 60)
-  speedMultiplier = 30;
-else if (speedMultiplier == 300)
-  speedMultiplier = 60;
-else if (speedMultiplier == 600)
-  speedMultiplier = 300;
-else if (speedMultiplier == 1800)
-  speedMultiplier = 600;
-else if(speedMultiplier == 3600)
-  speedMultiplier = 1800;
-else if(speedMultiplier == 3 * 3600)
-  speedMultiplier = 3600;
-else if(speedMultiplier == 10 * 3600)
-  speedMultiplier = 3 * 3600;
-else if (speedMultiplier == 24 * 3600)
-  speedMultiplier = 10 * 3600;
-else if (speedMultiplier == 5 * 24 * 3600)
-  speedMultiplier = 24 * 3600;
-else if (speedMultiplier == 7 * 24 * 3600)
-  speedMultiplier = 5 * 24 * 3600;
-else if (speedMultiplier == 3 * 7 * 24 * 3600)
-  speedMultiplier = 7 * 24 * 3600;
-else if (speedMultiplier == 30 * 24 * 3600)
-  speedMultiplier = 3 * 7 * 24 * 3600;
-else if (speedMultiplier == 3 * 30 * 24 * 3600)
-  speedMultiplier = 30 * 24 * 3600;
-else if (speedMultiplier == 6 * 30 * 24 * 3600)
-  speedMultiplier = 3 * 30 * 24 * 3600;
-else if (speedMultiplier == 12 * 30 * 24 * 3600)
-  speedMultiplier = 6 * 30 * 24 * 3600;
-else if (speedMultiplier == 3 * 12 * 30 * 24 * 3600)
-  speedMultiplier = 12 * 30 * 24 * 3600;
-
-    updateButtonAppearance(decreaseSpeedButton);
-    updateSpeedLabel();
+  let currentIndex = speedValues.indexOf(speedMultiplier);
+  if (currentIndex > 0) {
+    speedMultiplier = speedValues[currentIndex - 1];
+  }
+  updateButtonAppearance(decreaseSpeedButton);
+  updateSpeedLabel();
 });
+
 
 function updateButtonAppearance(button) {
     button.classList.add('active');
@@ -278,67 +214,35 @@ function updateButtonAppearance(button) {
 }
 
 function updateSpeedLabel() {
-  let speedLabelContent;
-  let speedValue;
+  const units = [
+    { value: 12 * 30 * 24 * 3600, singular: 'YR/S', plural: 'YRS/S' },
+    { value: 2592000, singular: 'MTH/S', plural: 'MTHS/S' },
+    { value: 604800, singular: 'WK/S', plural: 'WKS/S' },
+    { value: 86400, singular: 'DAY/S', plural: 'DAYS/S' },
+    { value: 3600, singular: 'HR/S', plural: 'HRS/S' },
+    { value: 60, singular: 'MIN/S', plural: 'MINS/S' },
+    { value: 1, singular: 'SEC/S', plural: 'SECS/S' }
+  ];
 
-  if (speedMultiplier > 12 * 30 * 24 * 3600) {
-      speedValue = speedMultiplier / (12 * 30 * 24 * 3600); 
-      speedLabelContent = `${speedValue} YRS/S`;
-  } else if (speedMultiplier == 12 * 30 * 24 * 3600) {
-      speedValue = speedMultiplier / (12 * 30 * 24 * 3600); 
-      speedLabelContent = `${speedValue} YR/S`;
-  } else if (speedMultiplier > 2592000) {
-      speedValue = speedMultiplier / 2592000; 
-      speedLabelContent = `${speedValue} MTHS/S`;
-  } else if (speedMultiplier == 2592000) {
-      speedValue = speedMultiplier / 2592000; 
-      speedLabelContent = `${speedValue} MTH/S`;
-  } else if (speedMultiplier > 604800) {
-        speedValue = speedMultiplier / 604800; 
-        speedLabelContent = `${speedValue} WKS/S`;
-  } else if (speedMultiplier == 604800) {
-      speedValue = speedMultiplier / 604800; 
-      speedLabelContent = `${speedValue} WK/S`;
-  } else if (speedMultiplier > 86400) {
-      speedValue = speedMultiplier / 86400; 
-      speedLabelContent = `${speedValue} DAYS/S`;
-  } else if (speedMultiplier == 86400) {
-    speedValue = speedMultiplier / 86400;
-    speedLabelContent = `${speedValue} DAY/S`;
-  } else if (speedMultiplier > 3600) {
-      speedValue = speedMultiplier / 3600; 
-      speedLabelContent = `${speedValue} HRS/S`;
-  }  else if (speedMultiplier == 3600) {
-      speedValue = speedMultiplier / 3600;
-      speedLabelContent = `${speedValue} HR/S`;
-  } else if (speedMultiplier == 60) {
-        speedValue = speedMultiplier / 60;
-        speedLabelContent = `${speedValue} MIN/S`;
-  } else if (speedMultiplier > 60) {
-      speedValue = speedMultiplier / 60;
-      speedLabelContent = `${speedValue} MINS/S`;
-  } else if (speedMultiplier > 1){
-    speedValue = speedMultiplier;
-    speedLabelContent = `${speedValue} SECS/S`;
-  } else {
-    speedValue = speedMultiplier; 
-    speedLabelContent = `${speedValue} SEC/S`;
+  for (const unit of units) {
+    if (speedMultiplier >= unit.value) {
+      const speedValue = speedMultiplier / unit.value;
+      const speedLabelContent = `${speedValue} ${speedValue === 1 ? unit.singular : unit.plural}`;
+      speedLabel.textContent = speedLabelContent;
+      return;
+    }
   }
-
-  speedLabel.textContent = speedLabelContent;
 }
+
 
 let INTERSECTED;
 
 function onMouseMove(event) {
-  // Вычисление позиции мыши в системе координат WebGL
   mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
-  // Обновление Raycaster с помощью камеры и позиции мыши
   raycaster.setFromCamera(mouse, camera);
 
-  // Определение объектов, пересекаемых лучом
   const intersects = raycaster.intersectObjects(scene.children);
 
   if (intersects.length > 0) {
@@ -346,14 +250,14 @@ function onMouseMove(event) {
 
       if (INTERSECTED != intersectedObject) {
           if (INTERSECTED) {
-              INTERSECTED.material.color.set(INTERSECTED.userData.originalColor); // Возвращение исходного цвета
+              INTERSECTED.material.color.set(INTERSECTED.userData.originalColor); 
           }
           INTERSECTED = intersectedObject;
-          INTERSECTED.material.color.set('#AFA5C5'); // Изменение цвета при наведении
+          INTERSECTED.material.color.set('#AFA5C5');
       }
   } else {
       if (INTERSECTED) {
-          INTERSECTED.material.color.set(INTERSECTED.userData.originalColor); // Возвращение исходного цвета
+          INTERSECTED.material.color.set(INTERSECTED.userData.originalColor);
       }
       INTERSECTED = null;
   }
@@ -377,45 +281,12 @@ info_read_json('planets_info.json').then(data => {
     console.error('Error loading planets information:', error);
 });
 
-// function onMouseClick(event) {
-//   const mouse = new THREE.Vector2();
-//   const raycaster = new THREE.Raycaster();
-  
-//   mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-//   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-//   raycaster.setFromCamera(mouse, camera);
-
-//   const intersects = raycaster.intersectObjects(scene.children);
-//   if (intersects.length > 0) {
-//       const intersectedObject = intersects[0].object;
-
-//       // Проверка, что объект находится в массиве кликабельных объектов
-//       if (clickableObjects.some(obj => obj.mesh === intersectedObject)) {
-//           const popupContent = document.getElementById('popup-content');
-
-//           // Показ разной информации в зависимости от нажатого объекта
-//           const planet = intersectedObject.userData.planet;
-//           if (planets_info[planet.name]) {
-//               popupContent.innerHTML = planets_info[planet.name];
-//           } else {
-//               popupContent.innerHTML = 'Информация для неизвестного объекта.';
-//           }
-
-//           document.getElementById('popup').classList.add('show');
-//       }
-//   }
-// }
-
 function onMouseClick(event) {
-  // Calculate mouse position in normalized device coordinates
   mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
-  // Update the raycaster with the camera and mouse position
   raycaster.setFromCamera(mouse, camera);
 
-  // Calculate objects intersecting the ray
   const intersects = raycaster.intersectObjects(clickableObjects, true);
 
   if (intersects.length > 0) {
@@ -425,7 +296,6 @@ function onMouseClick(event) {
     const popupImage = document.getElementById('popup-image');
       
     if (planet) {
-      // Handle the click event on the planet
       console.log(`Clicked on planet: ${planet.name.toLowerCase()}`);
       // if (planets_info[planet.name]) {
       popupContent.innerHTML = planets_info[planet.name.toLowerCase()];
@@ -444,33 +314,30 @@ function onMouseClick(event) {
 window.addEventListener('mousemove', onMouseMove, false);
 window.addEventListener('click', onMouseClick, false);
 
+const planets = [
+  { object: mercury, period: 88 },
+  { object: venus, period: 225 },
+  { object: earth, period: 365.25 },
+  { object: mars, period: 365 },
+  { object: jupiter, period: 4333 },
+  { object: saturn, period: 10759 },
+  { object: uranus, period: 30687 },
+  { object: neptune, period: 60190 }
+];
+
 function animate() {
   requestAnimationFrame(animate);
 
-  earth.angle += (1 / 365.25 / 86400 / 30) * speedMultiplier;
-    mercury.angle += (1 / 88 / 86400 / 30) * speedMultiplier;
-    venus.angle += (1 / 225 / 86400 / 30) * speedMultiplier;
-    mars.angle += (1 / 365 / 86400 / 30) * speedMultiplier;
-    jupiter.angle += (1 / 4333 / 86400 / 30) * speedMultiplier;
-    saturn.angle += (1 / 10759 / 86400 / 30) * speedMultiplier;
-    uranus.angle += (1 / 30687 / 86400 / 30) * speedMultiplier;
-    neptune.angle += (1 / 60190 / 86400 / 30) * speedMultiplier;
-
-    // Update planet positions
-    mercury.updatePosition();
-    venus.updatePosition();
-    earth.updatePosition();
-    mars.updatePosition();
-    jupiter.updatePosition();
-    saturn.updatePosition();
-    uranus.updatePosition();
-    neptune.updatePosition();
-
-    scene.children.forEach((child) => {
-      if (child.userData.planet) {
-          child.userData.planet.faceCamera(camera);
-      }
+  planets.forEach(planet => {
+    planet.object.angle += (1 / planet.period / 86400 / 30) * speedMultiplier;
+    planet.object.updatePosition();
   });
+
+  scene.children.forEach(child => {
+    if (child.userData.planet) {
+      child.userData.planet.faceCamera(camera);
+    }
+  });
+
   renderer.render(scene, camera);
 }
-
